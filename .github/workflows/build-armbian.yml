@@ -77,6 +77,7 @@ on:
         default: ""
 
 env:
+  UPLOAD_RELEASE: true
   TZ: America/New_York
 
 jobs:
