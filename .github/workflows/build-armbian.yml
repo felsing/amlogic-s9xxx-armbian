@@ -131,7 +131,7 @@ jobs:
 
       - name: Upload Armbian image to Release
         uses: softprops/action-gh-release@v1
-        if: steps.tag.outputs.status == 'success' && !cancelled()
+        if: env.PACKAGED_STATUS == 'success' && !cancelled()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
