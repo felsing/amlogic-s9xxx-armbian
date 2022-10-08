@@ -137,7 +137,7 @@ jobs:
         with:
           tag_name: ${{ steps.tag.outputs.release_tag }}
           body_path: release.txt
-          files: ${{ env.PACKAGED_OUTPUTPATH }}/* with:
+          files: ${{ env.PACKAGED_OUTPUTPATH }}/* 
           body: |
             This is Armbian image for Amlogic s9xxx tv box
             * Firmware information
