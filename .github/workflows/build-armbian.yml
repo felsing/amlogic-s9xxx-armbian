@@ -135,7 +135,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.outputs.release_tag }}
+          tag_name: Armbian_Aml_${{ env.ARMBIAN_RELEASE }}_${{ env.PACKAGED_OUTPUTDATE }}
           body_path: release.txt
           files: ${{ env.PACKAGED_OUTPUTPATH }}/* 
           body: |
