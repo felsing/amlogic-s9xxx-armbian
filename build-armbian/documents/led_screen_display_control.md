@@ -1,6 +1,6 @@
 # LED screen display control instructions
 
-- The configuration file is placed in the [/usr/share/openvfd](../armbian-files/platform-files/amlogic/rootfs/usr/share/openvfd) directory of the `Armbian/OpenWrt` system, and the command file for `Armbian` systems is located at [/usr/sbin/armbian-led](../armbian-files/platform-files/amlogic/rootfs/usr/sbin/armbian-led), and the command file for `OpenWrt` systems is located at [/usr/sbin/openwrt-led](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/amlogic-s9xxx/common-files/rootfs/usr/sbin/openwrt-led). If it is not in the current firmware, it can be uploaded manually, And give the file execute permission: `chmod +x /usr/share/openvfd/vfdservice /usr/sbin/*-led`
+- The configuration file is placed in the [/usr/share/openvfd](../armbian-files/platform-files/amlogic/rootfs/usr/share/openvfd) directory of the `Armbian/OpenWrt` system, and the command file for `Armbian` systems is located at [/usr/sbin/armbian-led](../armbian-files/platform-files/amlogic/rootfs/usr/sbin/armbian-led), and the command file for `OpenWrt` systems is located at [/usr/sbin/openwrt-led](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/make-openwrt/openwrt-files/common-files/usr/sbin/openwrt-led). If it is not in the current firmware, it can be uploaded manually, And give the file execute permission: `chmod +x /usr/share/openvfd/vfdservice /usr/sbin/*-led`
 
 - Upgrade your system's kernel to the latest version. `Armbian` systems are updated using the `armbian-update` command. For `OpenWrt` system, use `System menu` → `Amlogic Service` → `Online Download Update` to upgrade the function.
 
@@ -28,11 +28,11 @@ vfd_gpio_dat='0,69,0'
 ```yaml
 # Execute the following command in the terminal to add the Armbian system
 sed -i '/armbian-led/d' /etc/rc.local
-sed -i '/exit 0/i\armbian-led 15' /etc/rc.local
+sed -i '/^exit 0/i\[[ -f "/usr/sbin/armbian-led" ]] && armbian-led 15' /etc/rc.local
 
 # Execute the following command in the terminal to add the OpenWrt system
 sed -i '/openwrt-led/d' /etc/rc.local
-sed -i '/exit 0/i\openwrt-led 15' /etc/rc.local
+sed -i '/^exit 0/i\[[ -f "/usr/sbin/openwrt-led" ]] && openwrt-led 15' /etc/rc.local
 ```
 
 - You are welcome to share the conf file(xxx.conf) of your own devices after testing, so that more people can benefit.
@@ -57,7 +57,7 @@ sed -i '/exit 0/i\openwrt-led 15' /etc/rc.local
 
 # LED 屏显示控制说明
 
-- 配置文件放在 `Armbian/OpenWrt` 系统的 [/usr/share/openvfd](../armbian-files/platform-files/amlogic/rootfs/usr/share/openvfd) 目录下，`Armbian` 系统的命令文件位于 [/usr/sbin/armbian-led](../armbian-files/platform-files/amlogic/rootfs/usr/sbin/armbian-led)，`OpenWrt` 系统的命令文件位于 [/usr/sbin/openwrt-led](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/amlogic-s9xxx/common-files/rootfs/usr/sbin/openwrt-led)。如果当前固件中没有的可以手动上传，并赋予文件执行权限：`chmod +x /usr/share/openvfd/vfdservice /usr/sbin/*-led`
+- 配置文件放在 `Armbian/OpenWrt` 系统的 [/usr/share/openvfd](../armbian-files/platform-files/amlogic/rootfs/usr/share/openvfd) 目录下，`Armbian` 系统的命令文件位于 [/usr/sbin/armbian-led](../armbian-files/platform-files/amlogic/rootfs/usr/sbin/armbian-led)，`OpenWrt` 系统的命令文件位于 [/usr/sbin/openwrt-led](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/make-openwrt/openwrt-files/common-files/usr/sbin/openwrt-led)。如果当前固件中没有的可以手动上传，并赋予文件执行权限：`chmod +x /usr/share/openvfd/vfdservice /usr/sbin/*-led`
 
 - 将系统的内核升级到最新版本。`Armbian` 系统使用 `armbian-update` 命令升级。`OpenWrt` 系统使用 `系统菜单` → `晶晨宝盒` → `在线下载更新` 功能升级。
 
@@ -85,11 +85,11 @@ vfd_gpio_dat='0,69,0'
 ```yaml
 # Armbian 系统在终端执行以下命令添加
 sed -i '/armbian-led/d' /etc/rc.local
-sed -i '/exit 0/i\armbian-led 15' /etc/rc.local
+sed -i '/^exit 0/i\[[ -f "/usr/sbin/armbian-led" ]] && armbian-led 15' /etc/rc.local
 
 # OpenWrt 系统在终端执行以下命令添加
 sed -i '/openwrt-led/d' /etc/rc.local
-sed -i '/exit 0/i\openwrt-led 15' /etc/rc.local
+sed -i '/^exit 0/i\[[ -f "/usr/sbin/openwrt-led" ]] && openwrt-led 15' /etc/rc.local
 ```
 
 - 欢迎大家测试后分享自己设备的配置文件（ diy.conf ），让更多人受益。
